@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: Include ansible_podman
+      include_role:
+        name: ansible_podman
