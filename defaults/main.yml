@@ -1,2 +1,21 @@
 ---
 # defaults file for ansible_podman
+
+# If you need to block pull access from a registry, uncomment the section below
+# and add the registries fully-qualified name.
+podman_block_registries: []
+
+# If you need to access insecure registries, add the registry's fully-qualified name.
+# An insecure registry is one that does not have a valid SSL certificate or only does HTTP.
+podman_insecure_registries: []
+
+podman_registries:
+  - docker.io
+  - quay.io
+  # - registry.access.redhat.com
+  # - registry.centos.org
+  # - registry.fedoraproject.org
+
+podman_users:
+  - packer
+  - vagrant

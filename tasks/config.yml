@@ -1,0 +1,9 @@
+---
+- name: config | Configure Podman Registries
+  template:
+    src: containers/registries.conf.j2
+    dest: /etc/containers/registries.conf
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  become: true

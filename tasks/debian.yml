@@ -1,0 +1,41 @@
+---
+- name: debian | Installing Pre-Reqs
+  apt:
+    name:
+      - gnupg
+    state: present
+  become: true
+
+- name: debian | Adding Podman Repo Key
+  apt_key:
+    url: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/Debian_{{ ansible_distribution_major_version }}/Release.key
+    state: present
+  become: true
+  when: ansible_distribution == "Debian"
+
+- name: debian | Adding Podman Repo Key
+  apt_key:
+    url: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_{{ ansible_distribution_version }}/Release.key
+    state: present
+  become: true
+  when: ansible_distribution == "Ubuntu"
+
+- name: debian | Adding Podman Repo
+  apt_repository:
+    repo: deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/Debian_{{ ansible_distribution_major_version }}/ /
+    state: present
+  become: true
+  when: ansible_distribution == "Debian"
+
+- name: debian | Adding Podman Repo
+  apt_repository:
+    repo: deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_{{ ansible_distribution_version }}/ /
+    state: present
+  become: true
+  when: ansible_distribution == "Ubuntu"
+
+- name: debian | Installing Podman
+  apt:
+    name: podman
+    state: present
+  become: true
